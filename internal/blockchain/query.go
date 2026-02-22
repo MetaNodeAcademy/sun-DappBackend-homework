@@ -10,16 +10,16 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
-// QueryBlockInfo queries and prints information about a block
+// QueryBlockInfo 查询并打印区块信息
 func QueryBlockInfo(client *ethclient.Client, blockNumber int64) {
 	block, err := client.BlockByNumber(context.Background(), big.NewInt(blockNumber))
 	if err != nil {
-		log.Fatalf("Failed to retrieve block: %v", err)
+		log.Fatalf("获取区块失败: %v", err)
 	}
 
-	fmt.Printf("Block Number: %d\n", block.Number().Uint64())
-	fmt.Printf("Block Hash: %s\n", block.Hash().Hex())
-	fmt.Printf("Block Timestamp: %s\n", time.Unix(int64(block.Time()), 0))
-	fmt.Printf("Transaction Count: %d\n", len(block.Transactions()))
+	fmt.Printf("区块号: %d\n", block.Number().Uint64())
+	fmt.Printf("区块哈希: %s\n", block.Hash().Hex())
+	fmt.Printf("区块时间戳: %s\n", time.Unix(int64(block.Time()), 0))
+	fmt.Printf("交易数量: %d\n", len(block.Transactions()))
 	fmt.Println("--------------------------------------------------")
 }
